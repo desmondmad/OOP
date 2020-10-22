@@ -1,3 +1,4 @@
+//Desmond Madden SD2B
 package org.example;
 
 import java.io.File;
@@ -14,6 +15,7 @@ public class OOPCA1 {
             int subjectCode[] = new int[8];
             int mark[] = new int[8];
             int topMarks[] = null;
+            double avg;
 
             scan = new Scanner(new File("JC_Results.txt"));
             scan.useDelimiter(",|\r\n");
@@ -29,7 +31,11 @@ public class OOPCA1 {
                     System.out.println("Subject " + (i + 1) + ": " + subjectCode[i] + " Mark: " + mark[i] + "\n");
                 }
                 topMarks = selectFiveGrades(subjectCode, mark);
-                System.out.println(Arrays.toString(topMarks));
+                System.out.println("Students top marks were: " + Arrays.toString(topMarks));
+                avg = calculateAverage(topMarks);
+                System.out.println("The average mark of the student is: " + avg);
+                System.out.println();
+                System.out.println("------------------------------------------------");
                 scan.nextLine();
             }
             scan.close();
@@ -39,6 +45,7 @@ public class OOPCA1 {
             e.printStackTrace();
         }
     }
+//---------------------------------------------------------------------------
     public static int[] selectFiveGrades(int[] codes, int[] grades){
         int mandatoryMarks[] = new int[3];
         int nonMandatory[] = new int[5];
@@ -74,5 +81,15 @@ public class OOPCA1 {
             }
         }
         return topMarks;
+    }
+//--------------------------------------------------------------------------
+    private static double calculateAverage(int[] selectedGrades){
+        int total = 0;
+        double average;
+        for (int i = 0; i < selectedGrades.length;i++){
+            total += selectedGrades[i];
+        }
+        average = (double)total / selectedGrades.length;
+        return average;
     }
 }
