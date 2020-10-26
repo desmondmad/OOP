@@ -83,7 +83,7 @@ public class OOPCA1 {
         return topMarks;
     }
 //--------------------------------------------------------------------------
-    private static double calculateAverage(int[] selectedGrades){
+    public static double calculateAverage(int[] selectedGrades){
         int total = 0;
         double average;
         for (int i = 0; i < selectedGrades.length;i++){
