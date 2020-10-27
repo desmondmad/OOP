@@ -8,7 +8,14 @@ import java.util.Scanner;
 
 
 public class OOPCA1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        //Declare scanner as null
+        Scanner scan = null;
+        readFile(scan);
+    }
+
+    //-----------------------------------------------------------------------
+    public static void readFile(Scanner JC_Results) throws FileNotFoundException {
         //Declare scanner as null
         Scanner scan = null;
         try {
@@ -26,13 +33,12 @@ public class OOPCA1 {
             scan.useDelimiter(",|\r\n");
 
             //Start a while loop for while the scan has more to read
-            while(scan.hasNext())
-            {
+            while (scan.hasNext()) {
                 //studentNum becomes the first bit of data on a line in the file and then prints out the studentNum
                 studentNum = scan.next();
                 System.out.println("Student Number: " + studentNum);
                 //Start a for loop, to add the correct elements into the subjectCode and mark arrays and then print them out
-                for(int i = 0; i < mark.length; i++){
+                for (int i = 0; i < mark.length; i++) {
                     subjectCode[i] = scan.nextInt();
                     mark[i] = scan.nextInt();
 
@@ -55,11 +61,11 @@ public class OOPCA1 {
             //close the file if it has not been closed already
             scan.close();
 
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 //---------------------------------------------------------------------------
     public static int[] selectFiveGrades(int[] codes, int[] grades){
         int mandatoryMarks[] = new int[3];
@@ -103,6 +109,7 @@ public class OOPCA1 {
         //return the array topMarks
         return topMarks;
     }
+
 //--------------------------------------------------------------------------
     public static double calculateAverage(int[] selectedGrades){
         int total = 0;

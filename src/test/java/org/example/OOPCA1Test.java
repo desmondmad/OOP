@@ -19,6 +19,7 @@ public class OOPCA1Test extends TestCase {
         int[] expResult = {65,58,45,60,60};
         int[] result = instance.selectFiveGrades(subject,mark);
         System.out.println(Arrays.toString(result));
+
         Assert.assertArrayEquals(expResult,result);
     }
 
@@ -31,5 +32,6 @@ public class OOPCA1Test extends TestCase {
         double result = instance.calculateAverage(topMarks);
 
         assertEquals(expResult,result,0.5);
+
     }
 }
