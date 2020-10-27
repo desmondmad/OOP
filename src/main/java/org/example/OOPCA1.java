@@ -8,34 +8,30 @@ import java.util.Scanner;
 
 
 public class OOPCA1 {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         //Declare scanner as null
         Scanner scan = null;
         readFile(scan);
     }
 
     //-----------------------------------------------------------------------
-    public static void readFile(Scanner JC_Results) throws FileNotFoundException {
-        //Declare scanner as null
-        Scanner scan = null;
+    public static void readFile(Scanner JC_Results) {
         try {
-            //Declare studentNum as null String,
+            //Declare studentNum as String,
             //subjectCode,mark as int arrays with length of 8,
-            //topMarks as a null array,
+            //topMarks as an array,
             //avg as double
-            String studentNum = null;
-            int subjectCode[] = new int[8];
-            int mark[] = new int[8];
-            int topMarks[] = null;
+            int[] subjectCode = new int[8];
+            int[] mark = new int[8];
             double avg;
             //Initialise scan to read the txt file and use a delimiter so it ignores the , in the txt file
-            scan = new Scanner(new File("JC_Results.txt"));
+            Scanner scan = new Scanner(new File("JC_Results.txt"));
             scan.useDelimiter(",|\r\n");
 
             //Start a while loop for while the scan has more to read
             while (scan.hasNext()) {
                 //studentNum becomes the first bit of data on a line in the file and then prints out the studentNum
-                studentNum = scan.next();
+                String studentNum = scan.next();
                 System.out.println("Student Number: " + studentNum);
                 //Start a for loop, to add the correct elements into the subjectCode and mark arrays and then print them out
                 for (int i = 0; i < mark.length; i++) {
@@ -45,7 +41,7 @@ public class OOPCA1 {
                     System.out.println("Subject " + (i + 1) + ": " + subjectCode[i] + " Mark: " + mark[i] + "\n");
                 }
                 //return the selected 5 grades from the method selectFiveGrades() into the topMarks array using the parameters of subjectCode and mark
-                topMarks = selectFiveGrades(subjectCode, mark);
+                int[] topMarks = selectFiveGrades(subjectCode, mark);
                 //Print out the selected 5 grades
                 System.out.println("Students top marks were: " + Arrays.toString(topMarks));
                 //return the average of the selected 5 grades from the method calculateAverage() into avg using topMarks as the parameter
@@ -68,9 +64,9 @@ public class OOPCA1 {
 
 //---------------------------------------------------------------------------
     public static int[] selectFiveGrades(int[] codes, int[] grades){
-        int mandatoryMarks[] = new int[3];
-        int nonMandatory[] = new int[5];
-        int topMarks[] = new int[5];
+        int[] mandatoryMarks = new int[3];
+        int[] nonMandatory = new int[5];
+        int[] topMarks = new int[5];
         int countM = 0;
         int countN = 0;
         for(int i = 0; i < grades.length;i++){
@@ -114,8 +110,8 @@ public class OOPCA1 {
     public static double calculateAverage(int[] selectedGrades){
         int total = 0;
         double average;
-        for (int i = 0; i < selectedGrades.length;i++){
-            total += selectedGrades[i];
+        for (int selectedGrade : selectedGrades) {
+            total += selectedGrade;
         }
         average = (double)total / selectedGrades.length;
         return average;
